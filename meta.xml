@@ -1,5 +1,6 @@
 <meta>
 <info version="1.0.0" name="Roleplay Script" type="gamemode" author="Spelso"/>
+<min_mta_version client="1.5" server="1.5" />
 <script type="server" src="functions.lua"/>
 <script type="server" src="login.lua"/>
 <script type="client" src="clogin.lua"/>
@@ -15,7 +16,10 @@
 <script type="client" src="ctruck.lua"/>
 <script type="server" src="admin.lua"/>
 <script type="server" src="save.lua"/>
+<script type="server" src="/modules/factions/factions.lua"/>
+<script type="client" src="/modules/factions/cfactions.lua"/>
 <file src="vehiclePrices.xml" />
 <file src="truckOrders.xml" />
 <file src="truckPlaces.xml" />
+<file src="pricedown.ttf" />
 </meta>

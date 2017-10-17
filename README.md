@@ -1,2 +1,1 @@
-# rp
-MTA Roleplay Script
+# MTA Roleplay Script

@@ -1,10 +1,10 @@
 <places>
-<place no="1" name="L.S. Docks"/>
-<place no="2" name="K.A.C.C."/>
-<place no="3" name="Quarry"/>
-<place no="4" name="L.V. Building Site"/>
-<place no="5" name="Blueberry Acres"/>
-<place no="6" name="L.V. Oil Works"/>
-<place no="7" name="S.F. Chemicals"/>
-<place no="8" name="L.V. Deposit"/>
+<place no="1" x="2747.1337890625" y="-2405.341796875" z="13.465926170349" name="L.S. Docks"/>
+<place no="2" x="2482.9697265625" y="2773.1708984375" z="10.759768486023" name="K.A.C.C."/>
+<place no="3" x="350.0361328125" y="871.541015625" z="20.40625" name="Quarry"/>
+<place no="4" x="2468.2529296875" y="1922.6953125" z="9.765625" name="L.V. Building Site"/>
+<place no="5" x="-46.779296875" y="105.73046875" z="3.1171875" name="Blueberry Acres"/>
+<place no="6" x="286.71875" y="1411.513671875" z="10.395555496216" name="L.V. Oil Works"/>
+<place no="7" x="-1031.0400390625" y="-649.8505859375" z="31" name="S.F. Chemicals"/>
+<place no="8" x="1024.7080078125" y="2110.4619140625" z="9.6" name="L.V. Deposit"/>
 </places>

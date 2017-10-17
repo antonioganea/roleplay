@@ -1,2 +1,3 @@
-setTime(12,0)
+local hour, minutes = getTime()
+setTime(hour,minutes)
 setMinuteDuration ( 60000 )

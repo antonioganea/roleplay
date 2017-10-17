@@ -1,0 +1,25 @@
+<root>
+	<faction no="1" name="Los Santos Police Department" type="2" r="0" g="80" b="255">
+		<rank no ="1" name="Agent" wage="1000"/>
+		<rank no ="2" name="Principal Agent" wage="1200"/>
+		<rank no ="3" name="Deputy Chief Agent" wage="2000"/>
+		<rank no ="4" name="Chief Agent" wage="2500"/>
+		<rank no ="5" name="Principal Chief Agent" wage="3000"/>
+		<rank no ="6" name="Subinspector" wage="3200"/>
+		<rank no ="7" name="Inspector" wage="3500"/>
+		<rank no ="8" name="Principal Inspector" wage="4000"/>
+		<rank no ="9" name="Subcommissioner" wage="4200"/>
+		<rank no ="10" name="Comissioner" wage="4500"/>
+		<rank no ="11" name="Chief Comissioner" wage="5000"/>
+		<rank no ="12" name="Quaestor" wage="6000"/>
+		<rank no ="13" name="Principal Quaestor" wage="6200"/>
+		<rank no ="14" name="Chef-Quaestor" wage="6500"/>
+		<rank no ="15" name="Quaestor-General" wage="7000"/>
+	</faction>
+
+
+
+
+
+
+</root>

@@ -56,36 +56,66 @@ function unloadCargo(hitElement, matchingDimension)
   end
 end
 
-local places = {
+--[[local places = {
 [1] = {2747.1337890625, -2405.341796875, 13.465926170349, "L.S. Docks"}, --LS DEPOSIT
-
 [2] = {2482.9697265625, 2773.1708984375, 10.759768486023, "K.A.C.C."}, -- KACC
-
 [3] = {350.0361328125, 871.541015625, 20.40625, "Quarry"}, -- QUARRY
-
 [4] = {2468.2529296875, 1922.6953125, 9.765625, "L.V. Building Site"}, --Building site
-
 [5] = {-46.779296875, 105.73046875, 3.1171875, "Blueberry Acres"}, --FARM
-
 [6] = {286.71875, 1411.513671875, 10.395555496216, "L.V. Oil Works"}, --Oil works
-
 [7] = {-1031.0400390625, -649.8505859375, 31, "S.F. Chemicals"},
-
 [8] = {1024.7080078125, 2110.4619140625, 9.6, "L.V. Deposit"}
-}
-
-local orders = {--from to cargo payment
+}]]
+--[[local orders = {--from to cargo payment
   [1] = {7, 5, "Chemicals", 2000},
-  
   [2] = {3, 4, "Gravel", 2000},
-  
   [3] = {5, 1, "Plants", 2000},
-  
   [4] = {1, 2, "Weapons", 3000},
-  
   [5] = {6, 7, "Petrol", 2000},
+}]]
+
+local rootNode = xmlLoadFile ( "truckOrders.xml" )
+local nodes = xmlNodeGetChildren ( rootNode )
+
+local orders = {}
+
+for k,v in pairs( nodes ) do
+  local no = tonumber( xmlNodeGetAttribute ( v, "no" ) )
+  local from = tonumber( xmlNodeGetAttribute ( v, "from" ) )
+  local to = tonumber( xmlNodeGetAttribute ( v, "to" ) )
+  local cargo =  xmlNodeGetAttribute ( v, "cargo" )
+  local payment = tonumber( xmlNodeGetAttribute ( v, "payment" ) )
   
-}
+  if no and from and to and cargo and payment then
+    orders[no] = { from, to, cargo, payment }
+  else
+    outputChatBox("ERROR LOADING truckOrders.xml serverside!")
+  end
+end
+
+xmlUnloadFile ( rootNode )
+
+rootNode = xmlLoadFile ( "truckPlaces.xml" )
+nodes = xmlNodeGetChildren ( rootNode )
+
+local places = {}
+
+for k,v in pairs( nodes ) do
+  local no = tonumber( xmlNodeGetAttribute ( v, "no" ) )
+  local x = tonumber( xmlNodeGetAttribute ( v, "x" ) )
+  local y = tonumber( xmlNodeGetAttribute ( v, "y" ) )
+  local z = tonumber( xmlNodeGetAttribute ( v, "z" ) )
+  local name = xmlNodeGetAttribute ( v, "name" )
+  
+  if no and name then
+    places[no] = { x, y, z, name }
+  else
+    outputChatBox("ERROR LOADING truckPlaces.xml serverside!")
+  end
+end
+
+xmlUnloadFile ( rootNode )
+nodes = nil
 
 function showPanel( hitElement, matchingDimension ) -- define MarkerHit function for the handler
   if getElementType(hitElement) == "vehicle" then

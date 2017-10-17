@@ -213,6 +213,7 @@ addCommandHandler("startbus", startbus)
 function cancelbus(player,command)
   outputChatBox("Bus Route Canceled")
   marks[player] = nil
+  destroyElement(blips[player])
   destroyElement(markers[player])
   working[player] = nil
 end
