@@ -1,0 +1,7 @@
+<orders>
+	<order no="1" from="7" to="5" cargo="Chemicals" payment="2000"/>
+	<order no="2" from="3" to="4" cargo="Gravel" payment="2000"/>
+	<order no="3" from="5" to="1" cargo="Plants" payment="2000"/>
+	<order no="4" from="1" to="2" cargo="Chemicals" payment="3000"/>
+	<order no="5" from="6" to="7" cargo="Petrol" payment="2000"/>
+</orders>

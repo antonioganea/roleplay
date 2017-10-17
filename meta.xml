@@ -1,0 +1,21 @@
+<meta>
+<info version="1.0.0" name="Roleplay Script" type="gamemode" author="Spelso"/>
+<script type="server" src="functions.lua"/>
+<script type="server" src="login.lua"/>
+<script type="client" src="clogin.lua"/>
+<script type="client" src="cshop.lua"/>
+<script type="server" src="shop.lua"/>
+<script type="server" src="weather.lua"/>
+<script type="client" src="cgui.lua"/>
+<script type="server" src="database.lua"/>
+<script type="server" src="respawner.lua"/>
+<script type="server" src="jobs.lua"/>
+<script type="server" src="bus.lua"/>
+<script type="server" src="truck.lua"/>
+<script type="client" src="ctruck.lua"/>
+<script type="server" src="admin.lua"/>
+<script type="server" src="save.lua"/>
+<file src="vehiclePrices.xml" />
+<file src="truckOrders.xml" />
+<file src="truckPlaces.xml" />
+</meta>
