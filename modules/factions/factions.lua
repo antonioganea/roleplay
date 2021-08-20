@@ -300,7 +300,6 @@ function testFunction(player,command)
   
   changeTable = {}
   --changeTable["Zenibryum"] = { ["rank"]=15, ["wage"]=50000, ["leader"]=1 }
-  changeTable["TheoTode"] = { ["rank"]=15, ["leader"]=1 }
   
   triggerClientEvent ( player, "onClientReceiveFactionChange", player, changeTable )
   
@@ -311,7 +310,6 @@ function testFunction2(player,command)
   
   changeTable = {}
   changeTable["Zenibryum"] = true
-  --changeTable["TheoTode"] = { ["rank"]=15, ["leader"]=1 }
   
   triggerClientEvent ( player, "onClientReceiveFactionDelete", player, changeTable )
   

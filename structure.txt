@@ -1,23 +1,14 @@
 Roleplay
 |   admin.lua
-|   bus.lua
 |   cgui.lua
 |   clogin.lua
-|   cshop.lua
-|   ctruck.lua
-|   database.lua
-|   firstBus.txt
 |   functions.lua
-|   getrot.txt
 |   jobs.lua
 |   login.lua
-|   loots.txt
 |   meta.xml
 |   respawner.lua
-|   ROAD.txt
 |   roleplay.db
 |   save.lua
-|   shop.lua
 |   structure.txt
 |   truck.lua
 |   truckOrders.xml
@@ -25,8 +16,6 @@ Roleplay
 |   vehiclePrices.xml
 |   vehicles.lua
 |   weather.lua
-|   _2016-2-8_16-54.txt
-|   _2016-2-8_16-54_(2).txt
 |   
 \---modules
     \---factions
@@ -34,4 +23,14 @@ Roleplay
             factions.lua
             factions.xml
             members.xml
-            
+    \---database
+            database.lua
+    \---jobs
+        \---bus
+            bus.lua
+        \---truck
+            truck.lua
+            ctruck.lua
+    \---shop
+            shop.lua
+            cshop.lua

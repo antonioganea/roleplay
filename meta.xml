@@ -1,19 +1,18 @@
 <meta>
 <info version="1.0.0" name="Roleplay Script" type="gamemode" author="Spelso"/>
 <min_mta_version client="1.5" server="1.5" />
-<script type="server" src="functions.lua"/>
-<script type="server" src="login.lua"/>
-<script type="client" src="clogin.lua"/>
-<script type="client" src="cshop.lua"/>
-<script type="server" src="shop.lua"/>
+<script type="server" src="utils.lua"/>
+<script type="server" src="/modules/login/login.lua"/>
+<script type="client" src="/modules/login/clogin.lua"/>
+<script type="client" src="/modules/shop/cshop.lua"/>
+<script type="server" src="/modules/shop/shop.lua"/>
 <script type="server" src="weather.lua"/>
 <script type="client" src="cgui.lua"/>
-<script type="server" src="database.lua"/>
+<script type="server" src="/modules/database/database.lua"/>
 <script type="server" src="respawner.lua"/>
-<script type="server" src="jobs.lua"/>
-<script type="server" src="bus.lua"/>
-<script type="server" src="truck.lua"/>
-<script type="client" src="ctruck.lua"/>
+<script type="server" src="/modules/jobs/bus/bus.lua"/>
+<script type="server" src="/modules/jobs/truck/truck.lua"/>
+<script type="client" src="/modules/jobs/truck/ctruck.lua"/>
 <script type="server" src="admin.lua"/>
 <script type="server" src="save.lua"/>
 <script type="server" src="/modules/factions/factions.lua"/>
