@@ -30,6 +30,8 @@ function ( _, theCurrentAccount )
     local job = getAccountData(theCurrentAccount,"job")
     if ( job == "bus" ) then
       employ(source,job)
+    elseif ( job == "pizza" ) then
+      employ(source,job)
     end
     
     if ( database.players[source] == nil ) then
@@ -60,6 +62,8 @@ addEventHandler( 'onResourceStart', resourceRoot,
       if ( account and not isGuestAccount(account) ~= false ) then
         local job = getAccountData(account,"job")
         if ( job == "bus" ) then
+          employ(player,job)
+        elseif ( job == "pizza" ) then
           employ(player,job)
         end
       end

@@ -13,6 +13,8 @@ end
 function employ(player,job)
   if (job == "bus") then
     employees[player] = true
+  elseif (job=="pizza") then
+    pizza_employees[player] = true
   end
 end
 

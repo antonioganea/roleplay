@@ -13,6 +13,7 @@
 <script type="server" src="/modules/jobs/bus/bus.lua"/>
 <script type="server" src="/modules/jobs/truck/truck.lua"/>
 <script type="client" src="/modules/jobs/truck/ctruck.lua"/>
+<script type="server" src="/modules/jobs/pizza/pizza.lua"/>
 <script type="server" src="admin.lua"/>
 <script type="server" src="save.lua"/>
 <script type="server" src="/modules/factions/factions.lua"/>
