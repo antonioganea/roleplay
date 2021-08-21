@@ -74,7 +74,7 @@ end
   [5] = {6, 7, "Petrol", 2000},
 }]]
 
-local rootNode = xmlLoadFile ( "truckOrders.xml" )
+local rootNode = xmlLoadFile ( "modules/jobs/truck/truckOrders.xml" )
 local nodes = xmlNodeGetChildren ( rootNode )
 
 local orders = {}
@@ -95,7 +95,7 @@ end
 
 xmlUnloadFile ( rootNode )
 
-rootNode = xmlLoadFile ( "truckPlaces.xml" )
+rootNode = xmlLoadFile ( "modules/jobs/truck/truckPlaces.xml" )
 nodes = xmlNodeGetChildren ( rootNode )
 
 local places = {}

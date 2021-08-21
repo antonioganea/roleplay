@@ -1,4 +1,4 @@
-local rootNode = xmlLoadFile ( "vehiclePrices.xml" )
+local rootNode = xmlLoadFile ( "modules/shop/vehiclePrices.xml" )
 local nodes = xmlNodeGetChildren ( rootNode )
 
 local cars = {}

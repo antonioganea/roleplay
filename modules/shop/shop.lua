@@ -3,7 +3,9 @@
 --1929.546875 -1776.294921875 13.546875
 --0 0 270.49575805664
 
-local seller = createPed ( 147, 1929.546875, -1776.294921875, 13.6, 270 )
+local sellerPosition = {1929.546875, -1776.294921875, 13.6, 270}
+
+local seller = createPed ( 147, sellerPosition[1], sellerPosition[2], sellerPosition[3], sellerPosition[4] )
 createBlipAttachedTo ( seller, 55, 2, 0, 0, 0, 255, 0, 200 )
 
 function sellerClicked( theButton, theState, thePlayer )
@@ -14,23 +16,26 @@ function sellerClicked( theButton, theState, thePlayer )
 end
 addEventHandler( "onElementClicked", seller, sellerClicked, false )
 
-local rootNode = xmlLoadFile ( "vehiclePrices.xml" )
-local nodes = xmlNodeGetChildren ( rootNode )
-
 local cars = {}
 
-for k,v in pairs( nodes ) do
-  local price = tonumber( xmlNodeGetAttribute ( v, "price" ) )
-  local id = tonumber( xmlNodeGetAttribute ( v, "id" ) )
-  if price and id then
-    cars[id] = price
-  else
-    outputChatBox("ERROR LOADING vehiclePrices.xml serverside")
-  end
-end
+local function loadVehiclePrices()
+  local rootNode = xmlLoadFile ( "modules/shop/vehiclePrices.xml" )
+  local nodes = xmlNodeGetChildren ( rootNode )
 
-xmlUnloadFile ( rootNode )
-nodes = nil
+  for k,v in pairs( nodes ) do
+    local price = tonumber( xmlNodeGetAttribute ( v, "price" ) )
+    local id = tonumber( xmlNodeGetAttribute ( v, "id" ) )
+    if price and id then
+      cars[id] = price
+    else
+      outputChatBox("ERROR LOADING vehiclePrices.xml serverside")
+    end
+  end
+
+  xmlUnloadFile ( rootNode )
+  nodes = nil
+end
+loadVehiclePrices()
 
 
 function buyCar( carID ) -- PROBLEM WITH THIS FUNCTION : TWO SEPARATE TABLES FOR PRICES
