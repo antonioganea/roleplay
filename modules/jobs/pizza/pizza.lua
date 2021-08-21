@@ -4,9 +4,9 @@ createBlipAttachedTo ( employer, 29, 2, 0, 0, 0, 255, 0, 200 ) -- pizza blip 29
 -- TODO LIST:
 -- 1. Make sure that you don't get the same dropzone twice
 -- 2. Limit the pizza you can carry to a maximum of five, and then you have to reload at the pizza store
--- 3. Make the cylinder markers appear lower ( because now they're floating )
+--DONE 3. Make the cylinder markers appear lower ( because now they're floating )
 -- 4. There must be a way for players to spawn their pizzaboy scooter
--- 5. Multiple and appropriate pizza zone drops locations
+--DONE 5. Multiple and appropriate pizza zone drops locations
 -- 6. What happens if you drop out of the scooter while doing a pizza job?
 -- 7. What happens if you drop out and jump back in while doing a pizza job?
 -- 8. Should there be a counter?
