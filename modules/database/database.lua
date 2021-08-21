@@ -1,37 +1,39 @@
 database = {}
-database.connection = dbConnect( "sqlite", "roleplay.db" ) --initialize database
-dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS VEHICLES(
-    VID INTEGER PRIMARY KEY ASC,
-    MODEL INTEGER NOT NULL,
-    R INTEGER, SR INTEGER,
-    G INTEGER, SG INTEGER,
-    B INTEGER, SB INTEGER,
-    X REAL,
-    Y REAL,
-    Z REAL,
-    RX REAL,
-    RY REAL,
-    RZ REAL,
-    PLATE CHAR(8)
+database.connection = dbConnect( "sqlite", "data/roleplay.db" ) --initialize database
+
+function initializeDbTables()
+  dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS VEHICLES(
+      VID INTEGER PRIMARY KEY ASC,
+      MODEL INTEGER NOT NULL,
+      R INTEGER, SR INTEGER,
+      G INTEGER, SG INTEGER,
+      B INTEGER, SB INTEGER,
+      X REAL,
+      Y REAL,
+      Z REAL,
+      RX REAL,
+      RY REAL,
+      RZ REAL,
+      PLATE CHAR(8)
+    )
+  ]])
+
+  dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS OWNERS(
+      PID INTEGER,
+      VID INTEGER
+    )
+  ]]
   )
-]])
 
-dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS OWNERS(
-    PID INTEGER,
-    VID INTEGER
+  dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS PLAYERS(
+      PID INTEGER PRIMARY KEY ASC,
+      ACCOUNT CHAR(64) UNIQUE
+    )
+  ]]
   )
-]]
-)
+end
 
-dbExec( database.connection, [[CREATE TABLE IF NOT EXISTS PLAYERS(
-    PID INTEGER PRIMARY KEY ASC,
-    ACCOUNT CHAR(64) UNIQUE
-  )
-]]
-)
-
-resourceRoot = getResourceRootElement(getThisResource()) 
-
+initializeDbTables()
 
 --PID - player ID
 -- VID - vehicle ID
@@ -54,7 +56,6 @@ function addOwnership( VID, PID )
   dbExec( database.connection, "INSERT INTO OWNERS (PID,VID) VALUES (?,?)", PID, VID )
   table.insert ( database.owners[VID], PID ) -- Insert in the vehicle's owner list the PlayerIDs
 end
-
 --
 function addVehicleToDB(veh)
   if ( veh ~= false ) then

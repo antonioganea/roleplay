@@ -1,3 +1,5 @@
+resourceRoot = getResourceRootElement(getThisResource()) 
+
 function lendir(len, dir) -- LENDIR FUNCTION MTA SA MODEL
   if dir >= 0 and dir <= 90 then
     local delta = math.rad(dir)

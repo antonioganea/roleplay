@@ -13,7 +13,7 @@ guiGridListAddColumn(gtruck, "Destination", 0.2)
 guiGridListAddColumn(gtruck, "Base Pay", 0.2)
 
 
-local rootNode = xmlLoadFile ( "truckOrders.xml" )
+local rootNode = xmlLoadFile ( "modules/jobs/truck/truckOrders.xml" )
 local nodes = xmlNodeGetChildren ( rootNode )
 
 local orders = {}
@@ -36,7 +36,7 @@ xmlUnloadFile ( rootNode )
 
 --outputChatBox("DEBUG CLIENT LOADED truckOrders.xml",255,0,0)
 
-rootNode = xmlLoadFile ( "truckPlaces.xml" )
+rootNode = xmlLoadFile ( "modules/jobs/truck/truckPlaces.xml" )
 nodes = xmlNodeGetChildren ( rootNode )
 
 local places = {}

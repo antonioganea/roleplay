@@ -1,4 +1,4 @@
- addEventHandler ( "onPlayerLogout", getRootElement(),
+addEventHandler ( "onPlayerLogout", getRootElement(),
 function (thePreviousAccount)
   setAccountData( thePreviousAccount, "money", getPlayerMoney( source ) )
   setPlayerMoney(source,0,true)
@@ -7,6 +7,7 @@ function (thePreviousAccount)
   database.players[source] = nil
 end
 )
+
 addEventHandler ( "onPlayerQuit", getRootElement(),
   function()
   local thePreviousAccount = getPlayerAccount ( source )

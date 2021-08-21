@@ -14,12 +14,13 @@
 <script type="server" src="/modules/jobs/truck/truck.lua"/>
 <script type="client" src="/modules/jobs/truck/ctruck.lua"/>
 <script type="server" src="/modules/jobs/pizza/pizza.lua"/>
-<script type="server" src="admin.lua"/>
+<script type="server" src="/modules/admin/admin.lua"/>
 <script type="server" src="save.lua"/>
 <script type="server" src="/modules/factions/factions.lua"/>
 <script type="client" src="/modules/factions/cfactions.lua"/>
-<file src="vehiclePrices.xml" />
-<file src="truckOrders.xml" />
-<file src="truckPlaces.xml" />
-<file src="pricedown.ttf" />
+<script type="server" src="/modules/vehicles/vehicles.lua"/>
+<file src="/modules/shop/vehiclePrices.xml" />
+<file src="/modules/jobs/truck/truckOrders.xml" />
+<file src="/modules/jobs/truck/truckPlaces.xml" />
+<file src="/resources/pricedown.ttf" />
 </meta>
