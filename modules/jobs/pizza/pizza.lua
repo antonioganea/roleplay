@@ -5,7 +5,7 @@ createBlipAttachedTo ( employer, 29, 2, 0, 0, 0, 255, 0, 200 ) -- pizza blip 29
 -- 1. Make sure that you don't get the same dropzone twice
 -- 2. Limit the pizza you can carry to a maximum of five, and then you have to reload at the pizza store
 --DONE 3. Make the cylinder markers appear lower ( because now they're floating )
--- 4. There must be a way for players to spawn their pizzaboy scooter
+--DONE 4. There must be a way for players to spawn their pizzaboy scooter
 --DONE 5. Multiple and appropriate pizza zone drops locations
 -- 6. What happens if you drop out of the scooter while doing a pizza job?
 -- 7. What happens if you drop out and jump back in while doing a pizza job?
@@ -131,3 +131,35 @@ function employerClicked( theButton, theState, thePlayer )
     end
 end
 addEventHandler( "onElementClicked", employer, employerClicked, false )
+
+local pizzaBoySpawner = createMarker ( 2096.4697265625, -1796.7099609375, 12.98736000061 - 0.5, "cylinder", 2.0, 255, 0, 0, 127 )
+
+local playerVehicles = {}
+
+local function pizzaSpawnerHit(hitElement, matchingDimension)
+  local elementType = getElementType( hitElement )-- get the hit element's type]
+  if (elementType ~= "player") then
+    return
+  end
+
+  if ( pizza_employees[hitElement] ~= true ) then
+    return
+  end
+
+  if getPedOccupiedVehicle ( hitElement ) ~= false then
+    return
+  end
+
+  local x, y, z = getElementPosition(hitElement)
+  local pizzaBoy = createVehicle(448, x, y, z)
+
+  warpPedIntoVehicle(hitElement, pizzaBoy)
+
+  if ( playerVehicles[hitElement] ) then
+    destroyElement(playerVehicles[hitElement])
+  end
+
+  playerVehicles[hitElement] = pizzaBoy
+end
+
+addEventHandler( "onMarkerHit", pizzaBoySpawner, pizzaSpawnerHit, false )
