@@ -25,7 +25,7 @@ guiGridListAddColumn(fgui.gl[1], "Activity", 0.2)
 
 fgui.tab[2] = guiCreateTab("Help", fgui.tabpanel[1])
 
-fgui.memo[1] = guiCreateMemo(10, 10, 882, 719, "ad", false, fgui.tab[2])
+fgui.memo[1] = guiCreateMemo(10, 10, 882, 719, "information", false, fgui.tab[2])
 fgui.button[1] = guiCreateButton(1209, 730, 98, 58, "Close", false, fwindow)
 fgui.button[2] = guiCreateButton(983, 577, 261, 26, "", false, fwindow)
 fgui.button[3] = guiCreateButton(983, 577, 261, 26, "Kick Player", false, fwindow)
@@ -35,16 +35,18 @@ fgui.button[6] = guiCreateButton(983, 514, 261, 26, "Promote", false, fwindow)
 fgui.button[7] = guiCreateButton(983, 479, 261, 31, "Demote", false, fwindow)
 fgui.button[8] = guiCreateButton(983, 454, 261, 21, "Modify Faction Structure", false, fwindow)
 
-
 guiSetVisible ( fwindow, false )
 
-function togGridListeGUI( GUIElement )
+function toggleFactionsPanel( )
+  local GUIElement = fwindow
   guiSetVisible ( GUIElement, not guiGetVisible ( GUIElement ) )
+  showCursor ( guiGetVisible ( fwindow ) )
 end
 
- bindKey ( "F3", "down", function()
-  togGridListeGUI(fwindow)
-  showCursor ( guiGetVisible ( fwindow ) )
+addEventHandler ( "onClientGUIClick", fgui.button[1], toggleFactionsPanel, false )
+
+bindKey ( "F3", "down", function()
+  toggleFactionsPanel()
 end
 )
 
