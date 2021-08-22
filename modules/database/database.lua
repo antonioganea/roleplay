@@ -142,17 +142,6 @@ function loadPlayersFromDB()
 end
 addEventHandler("onResourceStart", resourceRoot, loadPlayersFromDB )
 --
-function findVehicleID(veh)
-  if (testveh ~= nil) then
-    for id, car in pairs(database.vehicles) do
-      if ( testveh == car ) then
-        return id
-      end
-    end
-    return nil -- if nothing found
-  end
-end
---
 function updateVehicleInDB(VID)
   local veh = database.vehicles[VID]
   if ( veh ~= nil ) then
