@@ -63,3 +63,27 @@ addCommandHandler("isthis", function(player,command)
       outputChatBox(tonumber(getVID(veh)) .. " is the Vehicle ID")
     end
 end)
+
+addCommandHandler("becomeowner", function(player,command)
+  local veh = getPedOccupiedVehicle(player)
+
+  if veh == false then
+    return
+  end
+
+  local VID = tonumber(getVID(veh))
+
+  if VID == -1 then
+    return
+  end
+
+  local PID = database.players[player]
+
+  if PID == nil then
+    return
+  end
+
+  addOwnership( VID, PID )
+
+  outputChatBox("Done!")
+end)
