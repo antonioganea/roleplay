@@ -89,17 +89,14 @@ local passengersSkins = {
 }
 
 function getRandomTaxiDropZone()
-    -- implement somehow that you dont' get a blip in the same spot
     return taxiDropZones[math.random(1,20)]
 end
 
 function getRandomPedDropZone()
-    -- implement somehow that you dont' get a blip in the same spot
     return pedDropZones[math.random(1,29)]
 end
 
 function getRandomSkin()
-    -- implement somehow that you dont' get a blip in the same spot
     return passengersSkins[math.random(1,26)]
 end
 
