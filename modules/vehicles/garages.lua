@@ -9,7 +9,7 @@ createBlipAttachedTo ( marker, 63, 2, 0, 0, 0, 255, 0, 200 ) -- pizza blip 29
 
 local resprayFee = 300
 
-function pizzaMarkerHit( hitElement, matchingDimension ) -- define MarkerHit function for the handler
+function payNSprayHit( hitElement, matchingDimension ) -- define MarkerHit function for the handler
     local elementType = getElementType( hitElement )-- get the hit element's type]
     if ( (elementType == "vehicle") and (getVehicleOccupant ( hitElement ) ~= nil) ) then -- "vehicle" is good?
       --outputChatBox( elementType.." inside myMarker", getRootElement(), 255, 255, 0 ) -- attach the element's type with the text, and output it
@@ -23,4 +23,4 @@ function pizzaMarkerHit( hitElement, matchingDimension ) -- define MarkerHit fun
     end
 end
 
-addEventHandler( "onMarkerHit", marker, pizzaMarkerHit, false )
+addEventHandler( "onMarkerHit", marker, payNSprayHit, false )
