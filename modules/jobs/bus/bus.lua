@@ -1,7 +1,6 @@
 local employer = createPed ( 308, 1809.9599609375, -1900.0771484375, 13.57726764679, 86.279693603516 )
 createBlipAttachedTo ( employer, 56, 2, 0, 0, 0, 255, 0, 200 )
 
-local employees = {}
 local working = {}
 
 local buses = {}
@@ -10,36 +9,18 @@ for i = 0,7 do
       table.insert(buses,newBus)
 end
 
-function employ(player,job)
-  if (job == "bus") then
-    employees[player] = true
-  elseif (job=="pizza") then
-    pizza_employees[player] = true
-  end
-end
-
 function employerClicked( theButton, theState, thePlayer )
-    if theButton == "left" and theState == "down" and employees[thePlayer] == nil then
+    if theButton == "left" and theState == "down" and not isEmployedAs(thePlayer,"bus") then
       local playerAccount = getPlayerAccount(thePlayer)
       if ( ( playerAccount ~= false ) and ( isGuestAccount(playerAccount) == false ) ) then-- if it's a valid account
         outputChatBox( "You are now hired as a bus driver!", thePlayer )
-        employees[thePlayer] = true
-        setAccountData(playerAccount,"job","bus")
+        employAs(thePlayer, "bus")
       else
         outputChatBox( "You are not logged in!", thePlayer)
       end
     end
 end
 addEventHandler( "onElementClicked", employer, employerClicked, false )
-
-function jobinfo(thePlayer, command)
-  if employees[thePlayer] ~= nil then
-    outputChatBox("You are hired as a bus driver",thePlayer)
-  else
-    outputChatBox("You are not hired",thePlayer)
-  end
-end
-addCommandHandler("jobinfo",jobinfo)
 
 road = {[1] = {1810.8017578125, -1889.666015625, 13.189101219177},
 [2] = {1823.873046875, -1738.1337890625, 13.16269493103},
@@ -179,7 +160,11 @@ function busHit( hitElement, matchingDimension ) -- define MarkerHit function fo
 end
 
 function startbus(player,command)
-  if employees[player] == true then
+  if not isEmployedAs(player, "bus") then
+    outputChatBox("You are not hired as a bus driver yet!", player)
+    return
+  end
+
     local theBus = getPedOccupiedVehicle ( player )
     if (theBus ~= false) then
       if ( getElementModel(theBus) == 431 ) then
@@ -202,9 +187,6 @@ function startbus(player,command)
     else
       outputChatBox("You are not in a vehicle!",player)
     end
-  else
-    outputChatBox("You are not hired yet!",player)
-  end
   --[[for k,v in ipairs(road) do
     marks[k] = createMarker ( v[1], v[2], v[3], "checkpoint", 4.0, 0, 127, 127, 127, player )
     addEventHandler( "onMarkerHit", marks[k], MarkerHit,false )

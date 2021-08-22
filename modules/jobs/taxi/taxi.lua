@@ -4,8 +4,6 @@ createBlipAttachedTo ( employer, 53, 2, 0, 0, 0, 255, 0, 200 ) -- taxi blip
 local taxi_markers = {}
 local taxi_blips = {}
 
-taxi_employees = {}
-
 local taxiDropZones = {
     [1] = {1939.154296875, -1930.4619140625, 13.161773681641},
     [2] = {1800.5263671875, -1900.5458984375, 13.182072639465},
@@ -161,7 +159,7 @@ function taxiMarkerHit( hitElement, matchingDimension ) -- define MarkerHit func
 end
 
 function starttaxi(player,command)
-    if taxi_employees[player] ~= true then
+    if not isEmployedAs(player,"taxi") then
         outputChatBox("You are not hired yet!",player)
         return
     end 
@@ -211,12 +209,11 @@ function allocateTaxiJob(player)
 end
 
 function employerClicked( theButton, theState, thePlayer )
-    if theButton == "left" and theState == "down" and taxi_employees[thePlayer] == nil then
+    if theButton == "left" and theState == "down" and not isEmployedAs(thePlayer,"taxi") then
       local playerAccount = getPlayerAccount(thePlayer)
       if ( ( playerAccount ~= false ) and ( isGuestAccount(playerAccount) == false ) ) then-- if it's a valid account
         outputChatBox( "You are now hired as a taxi driver!", thePlayer )
-        taxi_employees[thePlayer] = true
-        setAccountData(playerAccount,"job","taxi")
+        employAs(thePlayer, "taxi")
       else
         outputChatBox( "You are not logged in!", thePlayer)
       end

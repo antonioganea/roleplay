@@ -28,13 +28,6 @@ function ( _, theCurrentAccount )
     money = money or 0
     setPlayerMoney(source,money)
     
-    local job = getAccountData(theCurrentAccount,"job")
-    if ( job == "bus" ) then
-      employ(source,job)
-    elseif ( job == "pizza" ) then
-      employ(source,job)
-    end
-    
     if ( database.players[source] == nil ) then
         outputChatBox("You are logging on the server, getting you your PID : ")
         local qh = dbQuery( database.connection, "SELECT * FROM PLAYERS WHERE ACCOUNT=?",getAccountName(theCurrentAccount) )
@@ -58,24 +51,29 @@ end
 
 addEventHandler( 'onResourceStart', resourceRoot,
   function()
+    --[[
     for k,player in ipairs(getPlayers()) do
       local account = getPlayerAccount ( player )
       if ( account and not isGuestAccount(account) ~= false ) then
         local job = getAccountData(account,"job")
-        if ( job == "bus" ) then
-          employ(player,job)
-        elseif ( job == "pizza" ) then
-          employ(player,job)
-        end
+        reestablishJob(player, job)
       end
     end
-    
+    ]]
   end
 )
 addEventHandler ( "onResourceStop", resourceRoot, 
     function ( resource )
     for vehID,v in pairs(database.vehicles) do
       updateVehicleInDB(vehID)
+    end
+
+    for k,player in ipairs(getPlayers()) do
+      local account = getPlayerAccount ( player )
+      if ( account and not isGuestAccount(account) ~= false ) then
+        setAccountData( account, "money", getPlayerMoney( player ) )
+        --setPlayerMoney(player, 0, true)
+      end
     end
    end 
 )

@@ -10,6 +10,7 @@
 <script type="client" src="cgui.lua"/>
 <script type="server" src="/modules/database/database.lua"/>
 <script type="server" src="respawner.lua"/>
+<script type="server" src="/modules/jobs/jobs.lua"/>
 <script type="server" src="/modules/jobs/bus/bus.lua"/>
 <script type="server" src="/modules/jobs/truck/truck.lua"/>
 <script type="client" src="/modules/jobs/truck/ctruck.lua"/>

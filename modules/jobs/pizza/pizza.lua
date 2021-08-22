@@ -47,8 +47,6 @@ local pizzaDropZones = {
 local pizza_markers = {}
 local pizza_blips = {}
 
-pizza_employees = {}
-
 function getRandomPizzaDropZone()
     -- implement somehow that you dont' get a blip in the same spot
     return pizzaDropZones[math.random(1,29)]
@@ -79,8 +77,8 @@ end
 
 
 function startpizza(player,command)
-    if pizza_employees[player] ~= true then
-        outputChatBox("You are not hired yet!",player)
+    if not isEmployedAs(player, "pizza") then
+        outputChatBox("You are not hired as a pizza boy yet!",player)
         return
     end
 
@@ -119,12 +117,11 @@ end
 
 
 function employerClicked( theButton, theState, thePlayer )
-    if theButton == "left" and theState == "down" and pizza_employees[thePlayer] == nil then
+    if theButton == "left" and theState == "down" and not isEmployedAs(player, "pizza") then
       local playerAccount = getPlayerAccount(thePlayer)
       if ( ( playerAccount ~= false ) and ( isGuestAccount(playerAccount) == false ) ) then-- if it's a valid account
         outputChatBox( "You are now hired as a pizza delivery boy!", thePlayer )
-        pizza_employees[thePlayer] = true
-        setAccountData(playerAccount,"job","pizza")
+        employAs(thePlayer,"pizza")
       else
         outputChatBox( "You are not logged in!", thePlayer)
       end
@@ -142,7 +139,7 @@ local function pizzaSpawnerHit(hitElement, matchingDimension)
     return
   end
 
-  if ( pizza_employees[hitElement] ~= true ) then
+  if ( not isEmployedAs(hitElement, "pizza") ) then
     return
   end
 
