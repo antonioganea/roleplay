@@ -87,3 +87,47 @@ addCommandHandler("becomeowner", function(player,command)
 
   outputChatBox("Done!")
 end)
+
+local carBlips = {}
+
+addCommandHandler("blipcar", function(player, command, vid)
+  vid = tonumber(vid)
+  local targetVeh = database.vehicles[vid]
+
+  if targetVeh == nil then
+    outputChatBox("Vehicle with id " .. tostring(vid) .. " could not be found!", player)
+    return
+  end
+
+  local theBlip = createBlipAttachedTo ( targetVeh, 0, 2, 0, 0, 0, 255, 0, 99999.0, player )
+
+  playerUnblipCar(player) -- removed old blip, if any
+
+  carBlips[player] = theBlip
+
+  outputChatBox("Blip attached on vehicle with id " .. tostring(vid) .. "!", player)
+end)
+
+function playerUnblipCar(player)
+  if carBlips[player] == nil then
+    return
+  end
+
+  destroyElement(carBlips[player])
+  carBlips[player] = nil
+end
+
+addCommandHandler("unblip", function(player, command)
+  playerUnblipCar(player)
+end)
+
+-- this one doesn't have any way of reverting other than a resource restart
+-- one can be coded but it's not yet implemented.
+addCommandHandler("blipall", function(player, command)
+
+  for key, veh in pairs(database.vehicles) do
+    local theBlip = createBlipAttachedTo ( veh, 0, 2, 255, 0, 0, 255, 0, 99999.0, player )
+  end
+
+  outputChatBox("Blipped all vehicles", player)
+end)
