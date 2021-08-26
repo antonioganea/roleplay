@@ -3,7 +3,7 @@ createBlipAttachedTo ( employer, 29, 2, 0, 0, 0, 255, 0, 200 ) -- pizza blip 29
 
 -- TODO LIST:
 -- 1. Make sure that you don't get the same dropzone twice
--- 2. Limit the pizza you can carry to a maximum of five, and then you have to reload at the pizza store
+--DONE 2. Limit the pizza you can carry to a maximum of five, and then you have to reload at the pizza store
 --DONE 3. Make the cylinder markers appear lower ( because now they're floating )
 --DONE 4. There must be a way for players to spawn their pizzaboy scooter
 --DONE 5. Multiple and appropriate pizza zone drops locations
@@ -44,6 +44,18 @@ local pizzaDropZones = {
   [29] = {1959.1044921875, -1058.3662109375, 24.05513381958}
 }
 
+-- Player pizza inventory
+local playerPizzaCount = {}
+
+local function getPlayerPizzaCount(player)
+  if playerPizzaCount[player] == nil then
+    return 0
+  else
+    return playerPizzaCount[player]
+  end
+end
+--
+
 local pizza_markers = {}
 local pizza_blips = {}
 
@@ -59,6 +71,12 @@ function pizzaMarkerHit( hitElement, matchingDimension ) -- define MarkerHit fun
       --outputChatBox( elementType.." inside myMarker", getRootElement(), 255, 255, 0 ) -- attach the element's type with the text, and output it
       local player = getVehicleOccupant ( hitElement )
       if pizza_markers[player] == source then -- If the marker hit is the player's target marker
+
+        if ( getPlayerPizzaCount(player) <= 0 ) then
+          outputChatBox("Go pick some pizza from the pizzeria! You are out of pizza!", player)
+          return
+        end
+
         -- destroy marker
         destroyElement(pizza_markers[player])
         pizza_markers[player] = nil
@@ -69,6 +87,8 @@ function pizzaMarkerHit( hitElement, matchingDimension ) -- define MarkerHit fun
 
         -- reward player
         givePlayerMoney(player, 300)
+
+        playerPizzaCount[player] = playerPizzaCount[player] - 1 -- subtract one pizza
 
         allocatePizzaJob(player)
       end
@@ -113,6 +133,10 @@ function allocatePizzaJob(player)
     pizza_blips[player] = createBlipAttachedTo ( marker, 0, 2, 255, 127, 0, 255, 0, 99999.0, player)
 
     addEventHandler( "onMarkerHit", marker, pizzaMarkerHit, false )
+
+    if ( getPlayerPizzaCount(player) <= 0 ) then
+      outputChatBox("Go pick some pizza from the pizzeria! You are out of pizza!", player)
+    end
 end
 
 
@@ -128,6 +152,33 @@ function employerClicked( theButton, theState, thePlayer )
     end
 end
 addEventHandler( "onElementClicked", employer, employerClicked, false )
+
+-- Pizza pickup marker --
+
+local pizzaPickupZone = createMarker ( 2114.6484375, -1776.9404296875, 13.390956878662 - 0.9, "cylinder", 4.0, 180, 180, 0, 64 )
+
+local function pizzaPickupZoneHit(hitElement, matchingDimension)
+  local elementType = getElementType( hitElement )-- get the hit element's type]
+  if (elementType ~= "vehicle") then
+    return
+  end
+
+  local thePed = getVehicleOccupant(hitElement)
+
+  if ( not isEmployedAs(thePed, "pizza") ) then
+    return
+  end
+
+  if getElementModel( hitElement ) ~= 448 then
+    return
+  end
+
+  playerPizzaCount[thePed] = 5
+  outputChatBox("You now have " .. getPlayerPizzaCount(thePed) .. " pizzas!", thePed)
+end
+
+addEventHandler( "onMarkerHit", pizzaPickupZone, pizzaPickupZoneHit, false )
+-- Pizza boy spawner --
 
 local pizzaBoySpawner = createMarker ( 2096.4697265625, -1796.7099609375, 12.98736000061 - 0.5, "cylinder", 2.0, 255, 0, 0, 127 )
 
