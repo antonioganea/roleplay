@@ -75,6 +75,7 @@ function createLoginWindow()
 	edtUser = guiCreateEdit(X, Y, Width, Height, "", true, wdwLogin)
 	Y = 0.5
 	edtPass = guiCreateEdit(X, Y, Width, Height, "", true, wdwLogin)
+	guiEditSetMasked ( edtPass, true )
 	-- set the maximum character length for the username and password fields to 50
 	guiEditSetMaxLength(edtUser, 50)
 	guiEditSetMaxLength(edtPass, 50)
