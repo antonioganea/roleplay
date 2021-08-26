@@ -217,3 +217,37 @@ function employerClicked( theButton, theState, thePlayer )
     end
 end
 addEventHandler( "onElementClicked", employer, employerClicked, false )
+
+-- Taxi Spawner
+
+local taxiSpawner = createMarker ( 1771.60546875 - 3, -1909.0625 + 15, 13.554491043091 - 0.9, "cylinder", 2.0, 255, 0, 0, 127 )
+
+local playerTaxis = {}
+
+local function taxiSpawnerHit(hitElement, matchingDimension)
+  local elementType = getElementType( hitElement )-- get the hit element's type]
+  if (elementType ~= "player") then
+    return
+  end
+
+  if ( not isEmployedAs(hitElement, "taxi") ) then
+    return
+  end
+
+  if getPedOccupiedVehicle ( hitElement ) ~= false then
+    return
+  end
+
+  local x, y, z = getElementPosition(hitElement)
+  local newTaxi = createVehicle(420, x, y, z)
+
+  warpPedIntoVehicle(hitElement, newTaxi)
+
+  if ( playerTaxis[hitElement] ) then
+    destroyElement(playerTaxis[hitElement])
+  end
+
+  playerTaxis[hitElement] = newTaxi
+end
+
+addEventHandler( "onMarkerHit", taxiSpawner, taxiSpawnerHit, false )
